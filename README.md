@@ -1,1 +1,4 @@
-# dev_bg_neo4j_flask
+# Neo4j + Flask
+
+A simple social network, implemented using Flask and Neo4j.
+
