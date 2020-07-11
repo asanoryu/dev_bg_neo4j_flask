@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul class="users">
+    {% for row in who_to_follow %}
+    <li>
+        {{row.username}} followed by {{row.followed_by}} users <a
+            href="{{url_for('follow', username=row.username)}}">Follow</a>
+        {%endfor%}
+</ul>
+
+{% endblock %}

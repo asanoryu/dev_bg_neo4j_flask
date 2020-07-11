@@ -1,0 +1,14 @@
+<ul class="posts">
+    {% for row in posts %}
+
+    <li>
+        <p>{{row.content}}</p> <i>by {{row.poster}} on {{row.posted_on}}</i>
+        {% else %}
+        {%if session.username %}
+    <li>There aren't any posts yet!
+
+        {% endif %}
+        {% endfor %}
+        <br>
+        <a href="{{ url_for('who_to_follow') }}">Who to follow</a>
+</ul>
