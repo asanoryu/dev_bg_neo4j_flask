@@ -100,11 +100,13 @@ def get_most_followed() -> List[dict]:
     res = graph.run(
         """
             MATCH (u:User)<-[r:FOLLOWING]-(:User)
-            RETURN u.username, count(r) as followedBy
+            RETURN u.username as suggestion, count(r) as followedBy
             ORDER BY followedBy DESC 
             LIMIT 10"""
     )
-    return [{"username": row[0], "followed_by": row[1]} for row in res]
+    return [
+        {"username": row["suggestion"], "followed_by": row["followedBy"]} for row in res
+    ]
 
 
 def recommended_people(username):
@@ -122,4 +124,7 @@ def recommended_people(username):
          """,
         username=username,
     )
-    return [{"username": row[0], "followed_by": row[1]} for row in res]
+    return [
+        {"username": row["suggestion"], "followed_by": row["friendsInCommon"]}
+        for row in res
+    ]
